@@ -17,7 +17,7 @@ public interface IDiplomeRepository extends JpaRepository<Diplome, Long>{
 	@Query("select d FROM Diplome d "
 			+ "INNER JOIN Cv c  ON d.cv =c.id "
 			+ "WHERE  c.id= :idCv")
-    public List<Diplome> getALLByCv(@Param("idCv")Long idCv);
+    public List<Diplome> getALLByCvId(@Param("idCv")Long idCv);
 	
 	
 }
