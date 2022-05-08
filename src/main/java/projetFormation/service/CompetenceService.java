@@ -9,34 +9,30 @@ import org.springframework.stereotype.Service;
 import projetFormation.model.Competence;
 import projetFormation.repository.ICompetenceRepository;
 
-@Service
+@Service(value = "competenceService")
 public class CompetenceService implements IService<Competence>{
-
-	@Autowired
-	ICompetenceRepository competenceRepo;
 	
+	@Autowired
+	private ICompetenceRepository competenceRepository;
+
 	@Override
 	public List<Competence> findAll() {
-		
-		return competenceRepo.findAll();
+		return competenceRepository.findAll();
 	}
 
 	@Override
 	public Competence saveOrUpdate(Competence obj) {
-		
-		return competenceRepo.save(obj);
+		return competenceRepository.save(obj);
 	}
 
 	@Override
 	public Optional<Competence> getOne(Long id) {
-		
-		return competenceRepo.findById(id);
+		return competenceRepository.findById(id);
 	}
 
 	@Override
 	public void delete(Long id) {
-		competenceRepo.deleteById(id);
-		
+		competenceRepository.deleteById(id);
 	}
 
 }

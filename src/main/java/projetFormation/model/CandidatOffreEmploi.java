@@ -8,7 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
 @Entity
-public class Candidature {
+public class CandidatOffreEmploi {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -18,57 +19,54 @@ public class Candidature {
 	@JoinColumn(name = "candidat_id")
 	private Candidat candidat;
 	@ManyToOne
-	@JoinColumn(name = "Offre_id")
-	private OffreEmploi offre;
+	@JoinColumn(name = "offre_id")
+	private OffreEmploi offreEmploi;
 	
-	
-	
-	
-	public Candidature() {
-		super();
+	public CandidatOffreEmploi() {
+		
 	}
-
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-
 
 	public int getVersion() {
 		return version;
 	}
 
-
 	public void setVersion(int version) {
 		this.version = version;
 	}
-
 
 	public Candidat getCandidat() {
 		return candidat;
 	}
 
-
 	public void setCandidat(Candidat candidat) {
 		this.candidat = candidat;
 	}
 
-
-	public OffreEmploi getOffre() {
-		return offre;
+	public OffreEmploi getOffreEmploi() {
+		return offreEmploi;
 	}
 
-
-	public void setOffre(OffreEmploi offre) {
-		this.offre = offre;
+	public void setOffreEmploi(OffreEmploi offreEmploi) {
+		this.offreEmploi = offreEmploi;
 	}
 
+	@Override
+	public String toString() {
+		return "CandidatOffreEmploi [version=" + version + ", candidat=" + candidat + ", offreEmploi=" + offreEmploi
+				+ "]";
+	}
 	
 	
+	
+	
+	
+
 }

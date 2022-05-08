@@ -10,19 +10,22 @@ import projetFormation.repository.ICandidatRepository;
 import projetFormation.repository.ICvRepository;
 
 @Service(value = "cvService")
-public class CvService {
+public class CvService  {
 	
 	@Autowired
-	ICvRepository cvRepo;
+	private ICvRepository cvRepository;
+	
 	@Autowired
 	ICandidatRepository candidatRepo;
 	
 	public List<Cv> getCvsByCandidat(Long candidatId) {
-		return cvRepo.findByCandidatId(candidatId);
+		return cvRepository.findByCandidatId(candidatId);
 	}
 	
 	public Cv geCvById(Long id) {
-		return cvRepo.getById(id);
+		return cvRepository.getById(id);
 	}
+
+
 
 }

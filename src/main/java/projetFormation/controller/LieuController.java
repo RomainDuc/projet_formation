@@ -20,39 +20,57 @@ import projetFormation.service.LieuService;
 @RestController
 public class LieuController {
 	
+	
 	@Autowired
-	LieuService lieuService;
+	private LieuService lieuService;
+	
 	
 	@GetMapping("/lieux")
-	public ResponseEntity<List<Lieu>> findAllLieux() {
-		return new ResponseEntity<>(lieuService.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<Lieu>> getLieux(){
+		return new ResponseEntity<>(lieuService.findAll(),HttpStatus.OK);
 	}
 	
+	
 	@GetMapping("/lieux/{id}")
-	public ResponseEntity<Lieu> getOneLieu(@PathVariable Long id) {
-		Lieu lieu =lieuService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-				"Ce lieu n'existe pas pour id : " + id));
-		return new ResponseEntity<>(lieu, HttpStatus.OK);
+	public ResponseEntity<Lieu> getOneLieu(@PathVariable Long id){
+		
+		Lieu lieu=lieuService.getOne(id).orElseThrow(
+				()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "lieu introuvable pour l'id: "+id));
+		
+		return new ResponseEntity<Lieu>(lieu,HttpStatus.OK);
 	}
 	
 	@PostMapping("/lieux")
-	public ResponseEntity<Lieu> createLieu(@RequestBody Lieu lieu) {
-		return new ResponseEntity<>(lieuService.saveOrUpdate(lieu), HttpStatus.CREATED);
+	public ResponseEntity<Lieu> saveLieu(@RequestBody Lieu lieu){
+		return new ResponseEntity<Lieu>(lieuService.saveOrUpdate(lieu), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/lieux/{id}") 
-	public ResponseEntity<Lieu> updateLieu(@PathVariable Long id, @RequestBody Lieu lieu) {
-		lieuService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-				"Ce lieu n'existe pas pour id : " + id));
-		return new ResponseEntity<>(lieuService.saveOrUpdate(lieu), HttpStatus.OK);
+	
+	
+	@PutMapping("/lieux/{id}")
+	public ResponseEntity<Lieu> updateLieu(@PathVariable("id") Long id, @RequestBody Lieu lieu){
+		Lieu lieuUpdate=lieuService.getOne(id).orElseThrow(
+				()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lieu introuvable pour update avec id: "+id));
+		
+		lieuUpdate.setAdresse(lieu.getAdresse());
+		lieuUpdate.setCodePostal(lieu.getCodePostal());
+		lieuUpdate.setOffreEmplois(lieu.getOffreEmplois());
+		lieuUpdate.setPays(lieu.getPays());
+		lieuUpdate.setRegion(lieu.getRegion());
+		lieuUpdate.setVille(lieu.getVille());
+		
+		lieuService.saveOrUpdate(lieuUpdate);
+		
+		return new ResponseEntity<Lieu>(lieuUpdate,HttpStatus.OK);
 	}
+	
 	
 	@DeleteMapping("/lieux/{id}")
-	public ResponseEntity<?> deleteLieu(@PathVariable Long id) {
-		lieuService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-				"Ce lieu n'existe pas pour id : " + id));
-		lieuService.delete(id);
-		return new ResponseEntity<>("DELETED SUCCESFULLY", HttpStatus.OK);
+	public ResponseEntity<?> deleteLieu(@PathVariable("id") Long id){
+		lieuService.getOne(id).orElseThrow(
+				()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "lieu introuvable pour delete avec l'id: "+id));
+		
+		return new ResponseEntity<>("Delete SUCCESSFULLY", HttpStatus.OK);
 	}
 
 }

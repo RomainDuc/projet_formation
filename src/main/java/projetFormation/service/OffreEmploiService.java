@@ -13,35 +13,48 @@ import projetFormation.repository.IOffreEmploiRepository;
 public class OffreEmploiService implements IService<OffreEmploi>{
 
 	@Autowired
-	IOffreEmploiRepository offreEmploiRepo;
+	IOffreEmploiRepository offreEmploiRepository;
 	
 	@Override
 	public List<OffreEmploi> findAll() {
 		
-		return offreEmploiRepo.findAll();
+		return offreEmploiRepository.findAll();
 	}
 
 	@Override
 	public OffreEmploi saveOrUpdate(OffreEmploi obj) {
 				
-		return offreEmploiRepo.save(obj);
+		return offreEmploiRepository.save(obj);
 	}
 
 	@Override
 	public Optional<OffreEmploi> getOne(Long id) {
 		
-		return offreEmploiRepo.findById(id);
+		return offreEmploiRepository.findById(id);
 	}
 
 	@Override
 	public void delete(Long id) {
-		offreEmploiRepo.deleteById(id);
+		offreEmploiRepository.deleteById(id);
 		
-		
-	}
-	public List<OffreEmploi> findAllByCompetence(Long id) {
-		return offreEmploiRepo.findAllByCompetence(id);
 	}
 	
+	public List<OffreEmploi> findAllByCompetence(Long idCompetance){
+		return offreEmploiRepository.findAllByCompetance(idCompetance);
+		
+	}
+	
+	public List<OffreEmploi> findAllByLieu( Long idLieu){
+		return offreEmploiRepository.findAllByLieu(idLieu);
+	}
+	
+	public List<OffreEmploi> findAllByRecruteur(Long idRecruteur){
+		return offreEmploiRepository.findAllByRecruteur(idRecruteur);
+	}
+	
+	public List<OffreEmploi> getAllByCandidat (Long idCandidat){
+		return offreEmploiRepository.getAllByCandidat(idCandidat);
+	}
+
 
 }
