@@ -13,7 +13,10 @@ import projetFormation.repository.IRecruteurRepository;
 public class RecruteurService implements IService<Recruteur>{
 
 	@Autowired
-	IRecruteurRepository recruteurRepo;
+	private IRecruteurRepository recruteurRepo;
+	
+	//@Autowired
+	//private IEntrepriseRepository entrepriseRepo;
 	
 	@Override
 	public List<Recruteur> findAll() {

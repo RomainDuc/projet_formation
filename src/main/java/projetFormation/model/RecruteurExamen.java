@@ -7,68 +7,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+
 @Entity
-public class Candidature {
+public class RecruteurExamen {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
 	@Version
 	private int version;
 	@ManyToOne
-	@JoinColumn(name = "candidat_id")
-	private Candidat candidat;
+	@JoinColumn(name = "recruteur_id")
+	private Recruteur recruteur;
 	@ManyToOne
-	@JoinColumn(name = "Offre_id")
-	private OffreEmploi offre;
+	@JoinColumn(name = "examen_id")
+	private Examen examen;
 	
 	
 	
-	
-	public Candidature() {
-		super();
-	}
-
-
 	public Long getId() {
 		return id;
 	}
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-
-
 	public int getVersion() {
 		return version;
 	}
-
-
 	public void setVersion(int version) {
 		this.version = version;
 	}
-
-
-	public Candidat getCandidat() {
-		return candidat;
+	public Recruteur getRecruteur() {
+		return recruteur;
 	}
-
-
-	public void setCandidat(Candidat candidat) {
-		this.candidat = candidat;
+	public void setRecruteur(Recruteur recruteur) {
+		this.recruteur = recruteur;
 	}
-
-
-	public OffreEmploi getOffre() {
-		return offre;
+	public Examen getExamen() {
+		return examen;
 	}
-
-
-	public void setOffre(OffreEmploi offre) {
-		this.offre = offre;
+	public void setExamen(Examen examen) {
+		this.examen = examen;
 	}
-
 	
 	
+	
+
 }

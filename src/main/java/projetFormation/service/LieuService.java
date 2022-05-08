@@ -9,34 +9,30 @@ import org.springframework.stereotype.Service;
 import projetFormation.model.Lieu;
 import projetFormation.repository.ILieuRepository;
 
-@Service
-public class LieuService implements IService<Lieu> {
+@Service(value = "lieuService")
+public class LieuService implements IService<Lieu>{
 	
 	@Autowired
-	ILieuRepository lieuRepo;
+	private ILieuRepository lieuRepository;
 
 	@Override
 	public List<Lieu> findAll() {
-		
-		return lieuRepo.findAll();
+		return lieuRepository.findAll();
 	}
 
 	@Override
 	public Lieu saveOrUpdate(Lieu obj) {
-		
-		return lieuRepo.save(obj);
+		return lieuRepository.save(obj);
 	}
 
 	@Override
 	public Optional<Lieu> getOne(Long id) {
-		
-		return lieuRepo.findById(id);
+		return lieuRepository.findById(id);
 	}
 
 	@Override
 	public void delete(Long id) {
-		lieuRepo.deleteById(id);
-		
+		lieuRepository.deleteById(id);
 	}
 
 }

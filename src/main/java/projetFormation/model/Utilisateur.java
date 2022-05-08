@@ -16,7 +16,6 @@ public abstract class Utilisateur {
 	private Long id;
 	@Version
 	private int version;
-	@Column(nullable = false, length = 30, unique = false)
 	private String login;
 	private String nom;
 	private String prenom;
@@ -65,6 +64,12 @@ public abstract class Utilisateur {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	@Override
+	public String toString() {
+		return "Utilisateur [version=" + version + ", login=" + login + ", nom=" + nom + ", prenom=" + prenom
+				+ ", email=" + email + "]";
 	}
 
 	

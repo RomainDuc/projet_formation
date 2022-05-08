@@ -13,7 +13,7 @@ import projetFormation.repository.ICandidatRepository;
 public class CandidatService implements IService<Candidat>{
 
 	@Autowired
-	ICandidatRepository candidatRepo;
+	private ICandidatRepository candidatRepo;
 	
 	@Override
 	public List<Candidat> findAll() {

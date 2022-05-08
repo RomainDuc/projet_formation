@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 
@@ -74,6 +73,7 @@ public class OffreEmploi {
 		super();
 	}
 
+	
 
 	public long getId() {
 		return id;
@@ -222,6 +222,16 @@ public class OffreEmploi {
 
 	public void setLieu(Lieu lieu) {
 		this.lieu = lieu;
+	}
+
+
+	@Override
+	public String toString() {
+		return "OffreEmploi [version=" + version + ", categorieOffre=" + categorieOffre + ", description=" + description
+				+ ", datePublication=" + datePublication + ", dateLimite=" + dateLimite + ", salaire=" + salaire
+				+ ", experienceSouhaite=" + experienceSouhaite + ", niveauQualification=" + niveauQualification
+				+ ", typeContrat=" + typeContrat + ", statue=" + statue + ", candidatOffres=" + candidatOffres
+				+ ", competenceOffres=" + competenceOffres + ", recruteur=" + recruteur + ", lieu=" + lieu + "]";
 	}
 	
 	

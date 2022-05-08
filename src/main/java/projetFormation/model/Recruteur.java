@@ -3,12 +3,13 @@ package projetFormation.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 @Entity
 public class Recruteur extends Utilisateur{
+	
 	
 	private int matriculeRecruteur;
 	
@@ -22,10 +23,13 @@ public class Recruteur extends Utilisateur{
 	@OneToMany(mappedBy = "recruteur")
 	private List<ExamenRecruteur> examenRecruteurs;
 	
+
+	
 	
 	
 	public Recruteur() {
 		super();
+
 	}
 
 
@@ -76,6 +80,13 @@ public class Recruteur extends Utilisateur{
 
 	public void setExamenRecruteurs(List<ExamenRecruteur> examenRecruteurs) {
 		this.examenRecruteurs = examenRecruteurs;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Recruteur [matriculeRecruteur=" + matriculeRecruteur + ", entreprise=" + entreprise + ", offres="
+				+ offres + ", notifications=" + notifications + ", examenRecruteurs=" + examenRecruteurs + "]";
 	}
 	
 	
