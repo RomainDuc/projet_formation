@@ -34,5 +34,9 @@ public class CompetenceService implements IService<Competence>{
 	public void delete(Long id) {
 		competenceRepository.deleteById(id);
 	}
+	
+	public List<Competence> FindAllByCv(Long idCv) {
+		return competenceRepository.getALLByCv(idCv);
+	}
 
 }
