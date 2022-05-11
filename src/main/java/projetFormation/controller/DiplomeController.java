@@ -45,19 +45,20 @@ public class DiplomeController {
 		return new ResponseEntity<>(diplome, HttpStatus.OK);
 	}
 	
-	@GetMapping("/cv/diplome/{idCv}")
-	public ResponseEntity<List<Diplome>> getAllByCvId(@PathVariable Long idCv) {
-		return new ResponseEntity<List<Diplome>>(diplomeService.FindAllByCvId(idCv), HttpStatus.OK);
-	}
+	//déjà ds CV controller
+//	@GetMapping("/cv/diplome/{idCv}")
+//	public ResponseEntity<List<Diplome>> getAllByCvId(@PathVariable Long idCv) {
+//		return new ResponseEntity<List<Diplome>>(diplomeService.FindAllByCvId(idCv), HttpStatus.OK);
+//	}
 	
 	//@ApiOperation(value = "ajouter un Diplome", response = Diplome.class, tags = "createDiplome")
 	//@ApiResponses(value = { @ApiResponse(code = 201, message = "CREATED SUCCESSFULLY|OK") })
-	@PostMapping("cv/{idCv}/diplomes")
-	public ResponseEntity<Diplome> createDiplome(@RequestBody Diplome diplome,@PathVariable Long idCv) {
-		Cv cv =  cvService.getOne(idCv).get();
-		diplome.setCv(cv);
-		return new ResponseEntity<Diplome>(diplomeService.saveOrUpdate(diplome), HttpStatus.CREATED);
-	}
+//	@PostMapping("cv/{idCv}/diplomes")
+//	public ResponseEntity<Diplome> createDiplome(@RequestBody Diplome diplome,@PathVariable Long idCv) {
+//		Cv cv =  cvService.getOne(idCv).get();
+//		diplome.setCv(cv);
+//		return new ResponseEntity<Diplome>(diplomeService.saveOrUpdate(diplome), HttpStatus.CREATED);
+//	}
 	
 	@DeleteMapping("/diplomes/{id}")
 	//@ApiOperation(value = "supprimer un Diplome", response = Diplome.class, tags = "deleteDiplome")
