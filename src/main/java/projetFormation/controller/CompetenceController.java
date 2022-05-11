@@ -47,13 +47,13 @@ public class CompetenceController {
 	
 	
 	
-	@PostMapping("/cv/{id}/competence")
-	public ResponseEntity<Competence>  saveCompetence(@RequestBody Competence comp,@PathVariable Long id) {
-		 Cv cv = cvService.geCvById(id);
-		 comp.setCv(cv);
-		
-		return new ResponseEntity<>(competenceService.saveOrUpdate(comp), HttpStatus.CREATED);
-	}
+//	@PostMapping("/cv/{id}/competence")
+//	public ResponseEntity<Competence>  saveCompetence(@RequestBody Competence comp,@PathVariable Long id) {
+//		 Cv cv = cvService.geCvById(id);
+//		 comp.setCv(cv);
+//		
+//		return new ResponseEntity<>(competenceService.saveOrUpdate(comp), HttpStatus.CREATED);
+//	}
 	
 	@PutMapping("/competences/{id}")
 	public ResponseEntity<Competence> updateCompetence(@PathVariable("id") Long id,@RequestBody Competence competence) {
