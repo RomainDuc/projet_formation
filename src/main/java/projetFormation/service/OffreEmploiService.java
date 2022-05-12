@@ -55,6 +55,12 @@ public class OffreEmploiService implements IService<OffreEmploi>{
 	public List<OffreEmploi> getAllByCandidat (Long idCandidat){
 		return offreEmploiRepository.getAllByCandidat(idCandidat);
 	}
+	public List<OffreEmploi> findAllByExprienceSouhaite(int experienceSouhaite){
+		return offreEmploiRepository.findAllByExperienceSouhaite(experienceSouhaite);
+	}
 
+	public List<OffreEmploi> findAllByCategorieOffre(String categorieOffre){
+		return offreEmploiRepository.findAllByCategorieOffre(categorieOffre);
+	}
 
 }
