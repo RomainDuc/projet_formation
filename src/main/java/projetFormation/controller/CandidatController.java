@@ -15,46 +15,68 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import projetFormation.model.Candidat;
 import projetFormation.service.CandidatService;
 
+@Api(value = "CandidatRestController", description = "REST APIs related to Candidat Entity !!!!")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "*")
 public class CandidatController {
+
 	@Autowired
-	CandidatService candidatService;
+	private CandidatService candidatService;
+	
 
 	
+	//@ApiOperation(value = "Get list candidats", response = Candidat.class, tags = "getCandidats")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "success|OK") })
+
 	@GetMapping("/candidats")
 	public ResponseEntity<List<Candidat>> getCandidats() {
 		return new ResponseEntity<>(candidatService.findAll(), HttpStatus.OK);
 	}
 	
+
+	//@ApiOperation(value = "Get Offre Emploi by id", response = Candidat.class, tags = "getCandidat")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "success|OK") })
 	@GetMapping("/candidats/{id}")
 	public ResponseEntity<Candidat> getOneCandidat(@PathVariable("id") Long id) {
-		Candidat cand =candidatService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+		Candidat candidat =candidatService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
 				"Candidat n'existe pas pour id : " + id));
-		return new ResponseEntity<>(cand, HttpStatus.OK);
+		return new ResponseEntity<>(candidat, HttpStatus.OK);
 	}
 	
+	//@ApiOperation(value = "ajouter un candidat", response = Candidat.class, tags = "add Candidat")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "CREATED SUCCESSFULLY|OK") })
 	@PostMapping("/candidats")
-	public ResponseEntity<Candidat> createCandidat(@RequestBody Candidat cand) {
-		return new ResponseEntity<>(candidatService.saveOrUpdate(cand), HttpStatus.CREATED);
+	public ResponseEntity<Candidat> createCandidat(@RequestBody Candidat candidat) {
+		
+		return new ResponseEntity<Candidat>(candidatService.saveOrUpdate(candidat), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/candidats/{id}")
-	public ResponseEntity<Candidat> editCandidat(@PathVariable("id") Long id, @RequestBody Candidat candidat) {
-		candidatService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+	public ResponseEntity<Candidat> editOffreEmploi(@PathVariable("id") Long id, @RequestBody Candidat candidat) {
+		Candidat candidatUpdate=candidatService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
 				"Candidat n'existe pas pour id : " + id));
 		
-		candidat.setId(id);
+		candidatUpdate.setCandidatOffreEmploi(candidat.getCandidatOffreEmploi());
+		candidatUpdate.setCvs(candidat.getCvs());
+		candidatUpdate.setDateNaissance(candidat.getDateNaissance());
+		candidatUpdate.setDisponibilite(candidat.isDisponibilite());
+		candidatUpdate.setEmail(candidat.getEmail());
+		candidatUpdate.setLogin(candidat.getLogin());
+		candidatUpdate.setNom(candidat.getNom());
+		candidatUpdate.setPrenom(candidat.getPrenom());
 		
-		candidatService.saveOrUpdate(candidat);
+		candidatService.saveOrUpdate(candidatUpdate);
 
-		return new ResponseEntity<>(candidat, HttpStatus.OK);
+		return new ResponseEntity<>(candidatUpdate, HttpStatus.OK);
 
-
-	
 	}
 	
 	@DeleteMapping("/candidats/{id}")

@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import projetFormation.model.Competence;
 import projetFormation.model.Diplome;
 import projetFormation.repository.IDiplomeRepository;
 
@@ -35,10 +34,6 @@ public class DiplomeService implements IService<Diplome> {
 	@Override
 	public void delete(Long id) {
 		diplomeRepository.deleteById(id);
-	}
-	
-	public List<Diplome> FindAllByCvId(Long idCv) {
-		return diplomeRepository.getALLByCvId(idCv);
 	}
 
 }

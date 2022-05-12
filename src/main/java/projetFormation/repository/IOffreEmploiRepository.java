@@ -23,6 +23,8 @@ public interface IOffreEmploiRepository extends JpaRepository<OffreEmploi, Long>
 	@Query("select o From OffreEmploi o WHERE o.lieu= idLieu")
 	public List<OffreEmploi> findAllByLieu(@Param("idLieu") Long idLieu);
 	
+	public List<OffreEmploi> findAllByExperienceSouhaite(int experienceSouhaite);
+	
 	//autre methode de requete
 	//liste des offres par lieu 
 	//@Query("select o From OffreEmploi o WHERE o.lieu= ?1")
@@ -39,5 +41,7 @@ public interface IOffreEmploiRepository extends JpaRepository<OffreEmploi, Long>
 				+"INNER JOIN Candidat c ON co.candidat = c.id "
 				+ "WHERE  c.id= ?1")
 	public List<OffreEmploi> getAllByCandidat (Long idCandidat);
+	
+	public List<OffreEmploi> findAllByCategorieOffre(String categorieOffre);
 
 }

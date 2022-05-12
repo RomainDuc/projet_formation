@@ -2,6 +2,8 @@ package projetFormation.repository;
 
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,6 +17,9 @@ public interface ILieuRepository extends JpaRepository<Lieu,Long>{
 			+ "INNER JOIN OffreEmploi oe ON oe.lieu =l.id "
 			+ "WHERE oe.id= :idOffreEmploi")
 	public Lieu getByOffreEmploi(@Param("idOffreEmploi") Long idOffreEmploi);
+	
+	
+	public List<Lieu> findAllByVille(String ville);
 	
 	
 
