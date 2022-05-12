@@ -35,11 +35,13 @@ public class CandidatController {
 	
 	//@ApiOperation(value = "Get list candidats", response = Candidat.class, tags = "getCandidats")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "success|OK") })
+
 	@GetMapping("/candidats")
 	public ResponseEntity<List<Candidat>> getCandidats() {
 		return new ResponseEntity<>(candidatService.findAll(), HttpStatus.OK);
 	}
 	
+
 	//@ApiOperation(value = "Get Offre Emploi by id", response = Candidat.class, tags = "getCandidat")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "success|OK") })
 	@GetMapping("/candidats/{id}")
@@ -74,6 +76,7 @@ public class CandidatController {
 		candidatService.saveOrUpdate(candidatUpdate);
 
 		return new ResponseEntity<>(candidatUpdate, HttpStatus.OK);
+
 	}
 	
 	@DeleteMapping("/candidats/{id}")
