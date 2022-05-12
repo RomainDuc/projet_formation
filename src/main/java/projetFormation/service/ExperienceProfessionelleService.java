@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import projetFormation.model.ExperienceProfessionelle;
-import projetFormation.model.Formation;
 import projetFormation.repository.IExperienceProfessionelleRepository;
 
 
@@ -36,9 +35,6 @@ public class ExperienceProfessionelleService implements IService<ExperienceProfe
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		
-	}
-	public List<ExperienceProfessionelle> findAllByCvId(Long idCv) {
-		return experienceProfessionelleRepository.getALLByCv(idCv);
 	}
 
 

@@ -34,5 +34,9 @@ public class LieuService implements IService<Lieu>{
 	public void delete(Long id) {
 		lieuRepository.deleteById(id);
 	}
+	
+	public List<Lieu> findAllByVille(String ville){
+		return lieuRepository.findAllByVille(ville);
+	}
 
 }
