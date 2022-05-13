@@ -1,5 +1,4 @@
 package projetFormation.model;
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 @Entity
-public class Questionnaire  implements Serializable{
+public class Questionnaire {
     @Id
     @GeneratedValue
     private Long id;

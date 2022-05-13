@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Reponse {
 	@Id
@@ -17,6 +19,7 @@ public class Reponse {
 	private boolean choisie;
 	@ManyToOne
 	@JoinColumn(name="question_id")
+	@JsonIgnoreProperties("reponses")
 	private Question question;
 	
 	
