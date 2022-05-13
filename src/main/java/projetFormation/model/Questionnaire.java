@@ -1,14 +1,16 @@
 package projetFormation.model;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 @Entity
-public class Questionnaire {
+public class Questionnaire  implements Serializable{
     @Id
     @GeneratedValue
     private Long id;
@@ -18,7 +20,7 @@ public class Questionnaire {
     private int note;
     @Column(name="secteurActivite", length=250)
     private String secteurActivite;
-    @OneToMany(mappedBy = "questionnaire")
+    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.LAZY)
     private List<Question> questions;
     
     
