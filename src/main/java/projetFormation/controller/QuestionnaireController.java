@@ -17,17 +17,21 @@ import org.springframework.web.server.ResponseStatusException;
 
 import projetFormation.model.Question;
 import projetFormation.model.Questionnaire;
+import projetFormation.model.Reponse;
 import projetFormation.service.QuestionService;
 import projetFormation.service.QuestionnaireService;
+import projetFormation.service.ReponseService;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class QuestionnaireController {
 	
 	@Autowired
-	QuestionnaireService questionnaireService;
+	private QuestionnaireService questionnaireService;
 	@Autowired
-	QuestionService questionService;
+	private QuestionService questionService;
+	@Autowired
+	private ReponseService reponseService;
 	
 	@GetMapping("/questionnaires")
 	public ResponseEntity<List<Questionnaire>> getQuestionnaires() {
@@ -112,6 +116,60 @@ public class QuestionnaireController {
 				"Question n'existe pas pour id : " + id));
 		
 		questionService.delete(id);
+		
+		
+		return new ResponseEntity<>("DELETED SUCCESSFULLY", HttpStatus.OK);
+	}
+	
+	
+	//**************************************************************************************************
+	
+	@GetMapping("/reponses")
+	public ResponseEntity<List<Reponse>> getReponses() {
+		return new ResponseEntity<>(reponseService.findAll(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/reponses/{id}")
+	public ResponseEntity<Reponse> getOneReponse(@PathVariable("id") Long id) {
+		Reponse quest =reponseService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+				"Reponse n'existe pas pour id : " + id));
+		return new ResponseEntity<>(quest, HttpStatus.OK);
+	}
+	
+	@GetMapping("/questions/{idQuestion}/reponses")
+	public ResponseEntity<List<Reponse>> getAllByQuestion(@PathVariable Long idQuestion) {
+		questionService.getOne(idQuestion).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+				"Question n'existe pas pour id : " + idQuestion));
+		return new ResponseEntity<>(reponseService.getAllByQuestion(idQuestion), HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/reponses")
+	public ResponseEntity<Reponse> createReponse(@RequestBody Reponse reponse) {
+		return new ResponseEntity<>(reponseService.saveOrUpdate(reponse), HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/reponses/{id}")
+	public ResponseEntity<Reponse> editReponse(@PathVariable("id") Long id, @RequestBody Reponse reponse) {
+		Reponse respUpdate=reponseService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+				"Reponse n'existe pas pour id : " + id));
+		
+		
+		
+		reponseService.saveOrUpdate(respUpdate);
+
+		return new ResponseEntity<>(respUpdate, HttpStatus.OK);
+
+
+	
+	}
+
+	@DeleteMapping("/reponses/{id}")
+	public ResponseEntity<?> deleteReponse(@PathVariable("id")Long id) {
+		reponseService.getOne(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+				"Reponse n'existe pas pour id : " + id));
+		
+		reponseService.delete(id);
 		
 		
 		return new ResponseEntity<>("DELETED SUCCESSFULLY", HttpStatus.OK);
