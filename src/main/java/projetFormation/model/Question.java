@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Question {
     @Id
@@ -23,6 +25,7 @@ public class Question {
     
     @ManyToOne
     @JoinColumn(name = "questionnaire_id")
+    @JsonIgnoreProperties("questions")
     private Questionnaire questionnaire;
     @OneToMany(mappedBy = "question")
     private List<Reponse> reponses;
