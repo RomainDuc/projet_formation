@@ -1,6 +1,7 @@
 package projetFormation.model;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +20,7 @@ public class Questionnaire {
     private int note;
     @Column(name="secteurActivite", length=250)
     private String secteurActivite;
-    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "questionnaire",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Question> questions;
     
     
@@ -56,6 +57,11 @@ public class Questionnaire {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
+	
+	private void calculNote() {
+		
+	}
+ 	
     
     
 }
