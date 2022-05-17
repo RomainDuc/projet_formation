@@ -80,6 +80,8 @@ public class Examen {
 		public void setQuestionnaire(Questionnaire questionnaire) {
 			this.questionnaire = questionnaire;
 		}
-        
+		public void noteExam() {
+			
+		}
         
 }

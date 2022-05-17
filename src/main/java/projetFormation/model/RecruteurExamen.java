@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 public class RecruteurExamen {
@@ -16,9 +18,11 @@ public class RecruteurExamen {
 	private Long id;
 	@Version
 	private int version;
+	@JsonIgnoreProperties("examenRecruteurs")
 	@ManyToOne
 	@JoinColumn(name = "recruteur_id")
 	private Recruteur recruteur;
+	@JsonIgnoreProperties("examenRecruteurs")
 	@ManyToOne
 	@JoinColumn(name = "examen_id")
 	private Examen examen;
