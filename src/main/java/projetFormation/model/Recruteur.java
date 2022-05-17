@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Recruteur extends Utilisateur{
 	
 	
 	private int matriculeRecruteur;
-	
+	@JsonIgnoreProperties("recruteurs")
 	@ManyToOne
 	@JoinColumn(name = "entreprise_id")
 	private Entreprise entreprise;
