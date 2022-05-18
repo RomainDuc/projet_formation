@@ -1,5 +1,6 @@
 package projetFormation.model;
 
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Competence {
@@ -21,6 +24,7 @@ public class Competence {
 	private String description;
 	private String niveauAptitudes;
 	@ManyToOne
+	@JsonIgnoreProperties("competences")
 	@JoinColumn(name = "cv_id")
 	private Cv cv;
 	@OneToMany(mappedBy = "competence")

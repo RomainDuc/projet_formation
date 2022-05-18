@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class ExperienceProfessionelle {
 	
@@ -20,6 +22,7 @@ public class ExperienceProfessionelle {
 	private int anneeExperience;
 	private String entreprise;
 	@ManyToOne
+	@JsonIgnoreProperties("experienceProfessionelle")
 	@JoinColumn(name = "cv_id")
 	private Cv cv;
 	

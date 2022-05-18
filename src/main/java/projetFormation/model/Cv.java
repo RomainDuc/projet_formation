@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Cv {
 	@Id
@@ -18,12 +20,15 @@ public class Cv {
 	@Version
 	private int version;
 	@ManyToOne
+	@JsonIgnoreProperties("cvs")
 	@JoinColumn(name = "candidat_id")
 	private Candidat candidat;
 	
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnoreProperties("cv")
 	private List<Formation> formations;
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnoreProperties("cv")
 	private List<ExperienceProfessionelle> experiencesProfessionelles;
 	@OneToMany(mappedBy = "cv")
 	private List<Diplome> diplomes;

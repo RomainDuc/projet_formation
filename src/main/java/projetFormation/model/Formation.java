@@ -11,6 +11,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Formation {
 	@Id
@@ -24,6 +26,7 @@ public class Formation {
 	private int dureeFormation;
 	private String organismeFormateur;
 	@ManyToOne
+	@JsonIgnoreProperties("formations")
 	@JoinColumn(name = "cv_id")
 	private Cv cv;
 	

@@ -35,5 +35,10 @@ public class FormationService implements IService<Formation>{
 		formationRepository.deleteById(id);
 		
 	}
+	
+	
+	public List<Formation> getAllByCv(Long id){
+		return formationRepository.getAllByCv(id);
+	}
 
 }

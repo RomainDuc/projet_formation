@@ -18,6 +18,6 @@ public interface IFormationRepository extends JpaRepository<Formation, Long>{
 	@Query("select f FROM Formation f "
 			+ "INNER JOIN Cv c  ON f.cv =c.id "
 			+ "WHERE  c.id= :idCv")
-    public List<Formation> getALLByCv(@Param("idCv")Long idCv);
+    public List<Formation> getAllByCv(Long idCv);
 	
 }
