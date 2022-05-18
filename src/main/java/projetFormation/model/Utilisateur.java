@@ -17,6 +17,7 @@ public abstract class Utilisateur {
 	@Version
 	private int version;
 	private String login;
+	private String password;
 	private String nom;
 	private String prenom;
 	@Column(unique = true)
@@ -46,6 +47,15 @@ public abstract class Utilisateur {
 	}
 	public void setLogin(String login) {
 		this.login = login;
+	}
+	
+	
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getNom() {
 		return nom;

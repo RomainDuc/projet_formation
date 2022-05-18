@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class CandidatOffreEmploi {
 	
@@ -15,6 +17,7 @@ public class CandidatOffreEmploi {
 	private Long id;
 	@Version
 	private int version;
+	
 	@ManyToOne
 	@JoinColumn(name = "candidat_id")
 	private Candidat candidat;

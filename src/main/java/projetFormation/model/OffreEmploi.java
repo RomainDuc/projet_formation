@@ -16,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 public class OffreEmploi {
@@ -61,9 +63,11 @@ public class OffreEmploi {
 	private List<Candidature>  candidatOffres;
 	@OneToMany(mappedBy = "offreEmploi")
 	private List<CompetenceOffreEmploi> competenceOffres;
+	@JsonIgnoreProperties("offres")
 	@ManyToOne
 	@JoinColumn(name = "recruteur_id")
 	private Recruteur recruteur;
+	@JsonIgnoreProperties("offreEmplois")
 	@ManyToOne
 	@JoinColumn(name = "lieu_id")
 	private Lieu lieu;

@@ -21,6 +21,7 @@ public class ExperienceProfessionelle {
 	private String description;
 	private int anneeExperience;
 	private String entreprise;
+	@JsonIgnoreProperties("experiencesProfessionelles")
 	@ManyToOne
 	@JsonIgnoreProperties("experienceProfessionelle")
 	@JoinColumn(name = "cv_id")
