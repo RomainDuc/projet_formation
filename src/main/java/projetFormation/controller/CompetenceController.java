@@ -21,7 +21,6 @@ import projetFormation.service.CompetenceService;
 
 @RestController
 @CrossOrigin("*")
-
 public class CompetenceController {
 
 	
