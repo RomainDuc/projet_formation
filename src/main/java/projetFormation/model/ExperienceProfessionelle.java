@@ -23,6 +23,7 @@ public class ExperienceProfessionelle {
 	private String entreprise;
 	@JsonIgnoreProperties("experiencesProfessionelles")
 	@ManyToOne
+	@JsonIgnoreProperties("experienceProfessionelle")
 	@JoinColumn(name = "cv_id")
 	private Cv cv;
 	

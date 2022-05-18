@@ -25,8 +25,10 @@ public class Cv {
 	private Candidat candidat;
 	
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnoreProperties("cv")
 	private List<Formation> formations;
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnoreProperties("cv")
 	private List<ExperienceProfessionelle> experiencesProfessionelles;
 	@OneToMany(mappedBy = "cv")
 	private List<Diplome> diplomes;

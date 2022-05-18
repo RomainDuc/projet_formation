@@ -24,4 +24,5 @@ public interface ICvRepository extends JpaRepository<Cv, Long>{
 	
 	
 	
+	
 }

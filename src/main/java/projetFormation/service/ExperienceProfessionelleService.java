@@ -10,7 +10,7 @@ import projetFormation.model.ExperienceProfessionelle;
 import projetFormation.repository.IExperienceProfessionelleRepository;
 
 
-@Service(value = "experienceProfessionelleService")
+@Service(value ="experienceProfessionelleService")
 public class ExperienceProfessionelleService implements IService<ExperienceProfessionelle>{
 
 	@Autowired
@@ -33,7 +33,7 @@ public class ExperienceProfessionelleService implements IService<ExperienceProfe
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		experienceProfessionelleRepository.deleteById(id);
 		
 	}
 
