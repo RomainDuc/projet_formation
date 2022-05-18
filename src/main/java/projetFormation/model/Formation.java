@@ -27,7 +27,6 @@ public class Formation {
 	private String organismeFormateur;
 	@JsonIgnoreProperties("formations")
 	@ManyToOne
-	@JsonIgnoreProperties("formations")
 	@JoinColumn(name = "cv_id")
 	private Cv cv;
 	

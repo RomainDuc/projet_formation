@@ -39,5 +39,9 @@ public class CandidatService implements IService<Candidat>{
 		
 	}
 	
+	public Optional<Candidat>  loginCandidat(String login, String password) {
+		 return candidatRepo.findByLoginAndPassword(login, password);
+	}
+	
 
 }
