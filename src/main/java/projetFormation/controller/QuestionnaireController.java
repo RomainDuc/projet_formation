@@ -138,7 +138,7 @@ public class QuestionnaireController {
 	
 	@GetMapping("/questions/{idQuestion}/reponses")
 	public ResponseEntity<List<Reponse>> getAllByQuestion(@PathVariable Long idQuestion) {
-		reponseService.getOne(idQuestion).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+		questionService.getOne(idQuestion).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
 				"Question n'existe pas pour id : " + idQuestion));
 		return new ResponseEntity<>(reponseService.getAllByQuestion(idQuestion), HttpStatus.OK);
 	}
