@@ -1,6 +1,7 @@
 package projetFormation.model;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Question {
     @JoinColumn(name = "questionnaire_id")
     @JsonIgnoreProperties("questions")
     private Questionnaire questionnaire;
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Reponse> reponses;
     
     
